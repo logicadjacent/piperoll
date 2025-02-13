@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# ⎔ LogicAdjacent 2025 ⎔
+
+# Use this to make the version of a package permanent.
+# Useful if you need a specific set of features (and bugs...).
+#PACKAGES[pipewire]="1:1.2.7-1"
+#PACKAGES[wireplumber]="0.5.8-1"
+
+# Used in the "prepare" stage, to install the main bluetooth packages.
+# Normally not needed, the normal ubuntu installation should contain everything already.
+#INSTALL_BLUETOOTH="yes"
+
+# Indicates a somewhat older system
+# On ubuntu-based systems it should be turned on if it's based on jammy (22.04)
+# noble (24.04) is already considered new in this context
+# Currently it controls what packages are installed on the host system.
+#LEGACY="yes"
+
