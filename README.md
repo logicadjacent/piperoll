@@ -245,7 +245,7 @@ Uncomment the `PACKAGES[pipewire]` and `PACKAGES[wireplumber]` as needed, and se
 - Ubuntu 24.04 Noble
 - Ubuntu 22.04 Jammy
 - Linux Mint 22.01 Xia
-- Pop OS! 22.04
+- Pop! OS 22.04 (both Xorg and Wayland)
 - Zorin OS Core 17.2
 - Debian 12 Bookworm
 - Arch Linux (Feb 2025)
@@ -277,7 +277,9 @@ This second phase will download the latest/specified versions of `PipeWire`, `Wi
 It uses `Arch Linux` binary packages from the `Arch Linux Archive`. This allows us to pick different versions, without having to resort to compiling from source code. `Arch Linux` is one of the best places to find the latest versions of packages, that also go through some testing, before being released publicly.
 
 You can check which version of the packages are available here:
+
 [https://archive.archlinux.org/packages/p/pipewire/](https://archive.archlinux.org/packages/p/pipewire/)
+
 [https://archive.archlinux.org/packages/w/wireplumber/](https://archive.archlinux.org/packages/w/wireplumber/)
 
 Since we're not gonna run this in an actual container, we have to deal with a few things:
@@ -302,6 +304,12 @@ With these three solutions in place, we can now use `PipeWire` and `WirePlumber`
 &nbsp;<br/>&nbsp;<br/>
 
 # FAQ
+
+#### Any problems on Wayland?
+
+Tested on Pop! OS with Gnome, didn't break anything, all of these worked before and after installing `Piperoll`:
+- `gstreamer` pipeline that uses `pipewiresrc` (which connects directly to `pipewire`)
+- OBS: Screen Capture (both full screen and application window) and `Video Capture Device (Pipewire) BETA`.
 
 #### Why is Arch Linux on the supported distro list?
 

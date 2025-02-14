@@ -515,7 +515,7 @@ EOF
 	# Helper utility for quickly restarting things correctly
 	cat <<EOF >"${BIN_DIR}/pw-restart"
 #!/bin/bash
-systemctl restart --user pipewire.socket pipewire-pulse.socket "${SYSTEMD_SERVICES[@]}"
+systemctl restart --user pipewire.socket pipewire-pulse.socket ${SYSTEMD_SERVICES[@]}
 EOF
 	chmod a+x "${BIN_DIR}/pw-restart"
 
