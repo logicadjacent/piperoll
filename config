@@ -4,8 +4,8 @@
 
 # Use this to make the version of a package permanent.
 # Useful if you need a specific set of features (and bugs...).
-#PACKAGES[pipewire]="1:1.2.7-1"
-#PACKAGES[wireplumber]="0.5.8-1"
+#PACKAGES[pipewire]="1:1.4.10-2"
+#PACKAGES[wireplumber]="0.5.13-1"
 
 # Used in the "prepare" stage, to install the main bluetooth packages.
 # Normally not needed, the normal ubuntu installation should contain everything already.

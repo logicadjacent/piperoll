@@ -4,7 +4,8 @@ Install fresh versions of `PipeWire` and `WirePlumber` on a point-release distro
 
 ## The big question: WHY?
 
-`PipeWire` and (especially) `WirePlumber` are still "young" projects, and while they bring some crucial features to the Linux desktop, they were pushed to be the default way too soon.
+`PipeWire` and (especially) `WirePlumber` are still "young" projects, and while they bring some crucial features to the Linux desktop, they were pushed to be the default way too soon, before they could reach a mature internal state.
+This makes the whole pipewire ecosystem very volatile, the project is being majorly restructured with every release, it's a pain to keep up with working configs and workarounds.
 Point-release distros like `Ubuntu` are stuck with older versions, and many things have been redesigned in later versions of these components. These redesigns are important if you want to use features beyond basic audio playback.
 
 This script helps to overcome this problem, it's possible to install multiple version-combinations, not just the latest, in case you want a specific set of ~~bugs~~ features for your setup.
@@ -142,11 +143,11 @@ bash ./setup.sh test
 ```
 ⎔ Version info:
 /home/logicadjacent/.local/piperoll/rootfs//usr/bin/pipewire
-Compiled with libpipewire 1.2.7
-Linked with libpipewire 1.2.7
+Compiled with libpipewire 1.4.10
+Linked with libpipewire 1.4.10
 /home/logicadjacent/.local/piperoll/rootfs//usr/bin/wireplumber
-Compiled with libwireplumber 0.5.8
-Linked with libwireplumber 0.5.8
+Compiled with libwireplumber 0.5.13
+Linked with libwireplumber 0.5.13
 ⎔ Processes:
     PID %CPU   RSS  NI PRI CMD
    3418  0.0  5040 -11  30 /home/logicadjacent/.local/piperoll/rootfs/usr/bin/pipewire
@@ -220,8 +221,8 @@ There is an example file:
 
 # Use this to make the version of a package permanent.
 # Useful if you need a specific set of features (and bugs...).
-#PACKAGES[pipewire]="1:1.2.7-1"
-#PACKAGES[wireplumber]="0.5.8-1"
+#PACKAGES[pipewire]="1:1.4.10-2"
+#PACKAGES[wireplumber]="0.5.13-1"
 
 # Used in the "prepare" stage, to install the main bluetooth packages.
 # Normally not needed, the normal ubuntu installation should contain everything already.

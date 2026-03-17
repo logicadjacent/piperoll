@@ -431,6 +431,13 @@ setup_rootfs() {
 		if [ ! -e "${ROOTFS}/bin" ]; then ln -s "usr/bin" "${ROOTFS}/bin"; fi
 		if [ ! -e "${ROOTFS}/sbin" ]; then ln -s "bin" "${ROOTFS}/sbin"; fi
 
+		local WIREPLUMBER_MODULE_DIR
+		WIREPLUMBER_MODULE_DIR="$( basename "$( find "${ROOTFS}/usr/lib" -maxdepth 1 -name 'wireplumber-*' | head -n1 )" )"
+
+		# extract the sandbox stuff, so we can remap it
+		mkdir -p "${ROOTFS}/usr/share/wireplumber/wplua"
+		( gresource extract "${ROOTFS}/usr/lib/${WIREPLUMBER_MODULE_DIR}/libwireplumber-module-lua-scripting.so" "/org/freedesktop/pipewire/wireplumber/wplua/sandbox.lua" > "${ROOTFS}/usr/share/wireplumber/wplua/sandbox.lua" ) || true
+
 		if [ "${INSTALL_GLIBC}" = "yes" ]; then
 			# LD_LIBRARY_PATH is not enough to make two glibc's coexist, need a bit of ELF magic inside the rootfs.
 			find "${ROOTFS}/usr/lib" \
@@ -489,6 +496,7 @@ export SPA_DATA_DIR="${ROOTFS}/usr/share/${SPA_PLUGIN_DIR}"
 export WIREPLUMBER_CONFIG_DIR="${TARGET}/etc/wireplumber"
 export WIREPLUMBER_MODULE_DIR="${ROOTFS}/usr/lib/${WIREPLUMBER_MODULE_DIR}"
 export WIREPLUMBER_DATA_DIR="${ROOTFS}/usr/share/wireplumber"
+export G_RESOURCE_OVERLAYS="/org/freedesktop/pipewire/wireplumber/wplua=${ROOTFS}/usr/share/wireplumber/wplua"
 
 ${SCRIPT_TEMPLATE_ADDONS}
 
@@ -555,6 +563,7 @@ Environment=SPA_DATA_DIR="${ROOTFS}/usr/share/${SPA_PLUGIN_DIR}"
 Environment=WIREPLUMBER_CONFIG_DIR="${TARGET}/etc/wireplumber"
 Environment=WIREPLUMBER_MODULE_DIR="${ROOTFS}/usr/lib/${WIREPLUMBER_MODULE_DIR}"
 Environment=WIREPLUMBER_DATA_DIR="${ROOTFS}/usr/share/wireplumber"
+Environment=G_RESOURCE_OVERLAYS="/org/freedesktop/pipewire/wireplumber/wplua=${ROOTFS}/usr/share/wireplumber/wplua"
 
 ExecStart=
 ExecStart="${ROOTFS}/usr/bin/${SRV_EXE}" ${SRV_ARGS}
